@@ -1,0 +1,44 @@
+import java.util.*;
+
+public class nikita_books {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int t = sc.nextInt();
+
+        while (t-- > 0) {
+            int n = sc.nextInt();
+            long[] a = new long[n];
+
+            for (int i = 0; i < n; i++)
+                a[i] = sc.nextLong();
+
+            long extra = 0;
+            long prev = 0;
+            boolean ok = true;
+
+            for (int i = 0; i < n - 1; i++) {
+                long avail = a[i] + extra;
+                long need = prev + 1;
+
+                if (avail < need) {
+                    ok = false;
+                    break;
+                }
+
+                extra = avail - need;
+                prev = need;
+            }
+
+            if (ok) {
+                long last = a[n - 1] + extra;
+                if (last > prev)
+                    System.out.println("YES - nikita_books.java:36");
+                else
+                    System.out.println("NO - nikita_books.java:38");
+            } else {
+                System.out.println("NO - nikita_books.java:40");
+            }
+        }
+    }
+}
